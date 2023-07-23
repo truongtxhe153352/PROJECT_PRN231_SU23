@@ -2,7 +2,7 @@
 using BusinessObjects.DTO;
 using BusinessObjects.Models;
 using BusinessObjects.ViewModel;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using Repositories;
@@ -12,29 +12,9 @@ namespace ManagerAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Teacher")]
     public class TeacherController : ControllerBase
     {
-        //private readonly ICourseRepository _teacherRepository;
-        //private readonly IUserRepository _userRepository;
-        //private readonly IMaterialRepository _materialRepository;
-        //private readonly IAssignmentRespository _assignmentRespository;
-        //private readonly ISubmitAssignmentRespository _submitAssignmentRespository;
-        //private string BaseMaterailUrl = "";
-        //private readonly IMapper _mapper;
-
-    //    public TeacherController(CourseRepository teacherRepository, UserRepository userRepository, MaterialRepository materialRepository,
-    //AssignmentRepository assignmentRespository, SubmitAssignmentRespository submitAssignmentRespository,
-    //IMapper mapper)
-    //    {
-    //        _teacherRepository = teacherRepository;
-    //        _userRepository = userRepository;
-    //        _materialRepository = materialRepository;
-    //        _assignmentRespository = assignmentRespository;
-    //        _submitAssignmentRespository = submitAssignmentRespository;
-    //        _mapper = mapper;
-    //        BaseMaterailUrl = "../ManagerAPI/wwwroot/AllFiles/Materials";
-    //    }
-
         private readonly ICourseRepository _teacherRepository = new CourseRepository();
         private readonly IUserRepository _userRepository = new UserRepository();
         private readonly IMaterialRepository _materialRepository = new MaterialRepository();
@@ -64,7 +44,6 @@ namespace ManagerAPI.Controllers
                 courseDtos.Add(_mapper.Map<Course, CourseDto>(c));
 
             }
-            //return Ok(_mapper.Map<List<CourseDto>>(courses));
             return Ok(courseDtos);
         }
 
@@ -81,23 +60,23 @@ namespace ManagerAPI.Controllers
         public IActionResult GetAllMaterialsByCourse(int courseId)
         {
             List<Material> materials = (List<Material>)_materialRepository.GetMaterialsByCourseId(courseId);
-            if (materials == null || materials.Count == 0)
-            {
-                return NotFound();
-            }
             List<MaterialDto> materialDtos = new List<MaterialDto>();
-            return Ok(_mapper.Map<List<MaterialDto>>(materials));
+            foreach (var material in materials)
+            {
+                materialDtos.Add(_mapper.Map<Material, MaterialDto>(material));
+            }
+            return Ok(materialDtos);
         }
 
         [HttpPost("Materials")]
-        public IActionResult UploadMaterial([FromForm] List<IFormFile> files, [FromForm] int courseId, [FromForm] int teacherId)
+        public IActionResult UploadMaterial([FromForm] List<IFormFile> files, [FromForm] int courseId, [FromForm] int uploaderId)
         {
             foreach (var file in files)
             {
                 UploadMaterialViewModel uploadMaterialViewModel = new UploadMaterialViewModel();
                 uploadMaterialViewModel.Material = file;
                 uploadMaterialViewModel.CourseId = courseId;
-                uploadMaterialViewModel.UploaderId = teacherId;
+                uploadMaterialViewModel.UploaderId = uploaderId;
                 uploadMaterialViewModel.MaterialPath = BaseMateriallUrl;
                 uploadMaterialViewModel.MaterialName = file.FileName;
                 _materialRepository.SaveMaterial(uploadMaterialViewModel.Material, uploadMaterialViewModel.MaterialPath,
@@ -120,19 +99,22 @@ namespace ManagerAPI.Controllers
             return Ok();
         }
 
+
+
+        //=============================================================ASSIGNMENT==============================================================
+
         [HttpPost]
         [Route("Assignments")]
-        public IActionResult UploadAssigmentNewest(IFormFile file, [FromForm] int courseId, [FromForm] int teacherId)
+        public IActionResult UploadAssigmentNewest(IFormFile file, [FromForm] int courseId, [FromForm] int uploaderId)
         {
             UploadAssignmentViewModel uploadAssignmentViewModel = new UploadAssignmentViewModel();
             uploadAssignmentViewModel.Assignment = file;
             uploadAssignmentViewModel.CourseId = courseId;
-            uploadAssignmentViewModel.UploaderId = teacherId;
+            uploadAssignmentViewModel.UploaderId = uploaderId;
             _assignmentRespository.SaveAssignment(uploadAssignmentViewModel);
             return Ok();
         }
 
-        //public IActionResult UploadAssignment([FromForm] UploadAssignmentViewModel uploadAssignmentViewModel)
         [HttpGet("Assignments/{teacherId}/{courseId}")]
         public ActionResult<IEnumerable<AssigmentDto>> ListAssignmentByCourse(int teacherId, int courseId)
         => _assignmentRespository.ListAssignmentByTeacherAndCourse(teacherId, courseId).Select(_mapper.Map<Assignment, AssigmentDto>).ToList();
@@ -148,7 +130,7 @@ namespace ManagerAPI.Controllers
             SubmitAssignmentDto assigmentDto = (SubmitAssignmentDto)_mapper.Map<SubmitAssignmentDto>(_submitAssignmentRespository.GetSubmitAssignmentsById(id));
             //var filepath = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\Files", filename);
 
-            if(assigmentDto != null)
+            if (assigmentDto != null)
             {
                 var filepath = assigmentDto.Path;
                 var provider = new FileExtensionContentTypeProvider();

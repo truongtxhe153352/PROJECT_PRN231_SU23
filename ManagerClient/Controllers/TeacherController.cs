@@ -1,5 +1,6 @@
 ﻿using BusinessObjects.DTO;
 using BusinessObjects.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.IdentityModel.Tokens.Jwt;
@@ -175,6 +176,7 @@ namespace ManagerClient.Controllers
             }
             return RedirectToAction("ListMaterialOfCourse", "Teacher", new { id = courseId });
         }
+
         [HttpGet]
         public async Task<IActionResult> UploadAssignment()
         {
@@ -206,6 +208,7 @@ namespace ManagerClient.Controllers
             model.UploaderId = uploaderId;
             return View(model);
         }
+
         [HttpPost]
         public async Task<IActionResult> UploadAssignmentPost(UploadAssignmentViewModel uploadAssignmentViewModel)
         {
@@ -290,7 +293,7 @@ namespace ManagerClient.Controllers
                 return RedirectToAction("Index", "Login");
             }
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData2);
-            HttpResponseMessage response = await client.GetAsync(TeacherApiUrl + $"/Assignments/{assId}");
+            HttpResponseMessage response = await client.GetAsync(TeacherApiUrl + $"/Assignments/{assId}/list-submit");
             if (!response.IsSuccessStatusCode)
             {
                 if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
