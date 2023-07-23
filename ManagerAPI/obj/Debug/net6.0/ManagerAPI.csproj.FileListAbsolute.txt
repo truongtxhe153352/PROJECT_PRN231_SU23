@@ -71,3 +71,9 @@ D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\ManagerAP
 D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\ManagerAPI\bin\Debug\net6.0\Repositories.pdb
 D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\ManagerAPI\bin\Debug\net6.0\BusinessObjects.pdb
 D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\ManagerAPI\bin\Debug\net6.0\DataAccess.pdb
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\ManagerAPI\bin\Debug\net6.0\Microsoft.AspNetCore.OData.dll
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\ManagerAPI\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\ManagerAPI\bin\Debug\net6.0\Microsoft.OData.Core.dll
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\ManagerAPI\bin\Debug\net6.0\Microsoft.OData.Edm.dll
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\ManagerAPI\bin\Debug\net6.0\Microsoft.OData.ModelBuilder.dll
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\ManagerAPI\bin\Debug\net6.0\Microsoft.Spatial.dll
