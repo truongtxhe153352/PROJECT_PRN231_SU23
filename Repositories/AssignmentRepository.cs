@@ -2,6 +2,7 @@
 using BusinessObjects.Models;
 using BusinessObjects.ViewModel;
 using DataAccess;
+using Repositories.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Repositories
 {
-    public class AssignmentRepository
+    public class AssignmentRepository : IAssignmentRespository
     {
         public void SaveAssignment(UploadAssignmentViewModel model) => AssignmentDao.SaveAssignment(model);
         public IEnumerable<Assignment> GetAssignmentsByCourseId(int courseId) => AssignmentDao.GetAssignmentsByCourseId(courseId);

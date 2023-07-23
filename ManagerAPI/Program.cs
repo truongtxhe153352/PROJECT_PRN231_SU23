@@ -29,6 +29,8 @@ using BusinessObjects.DTO;
 using BusinessObjects.Models;
 using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
+using Repositories;
+using Repositories.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,7 +49,7 @@ builder.Services.AddControllers().AddOData(option => option.Select().Filter().Co
 builder.Services.AddCors();
 builder.Services.AddDbContext<PRN231_ProjectContext>(opt =>
 {
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("MyDatabase"));
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("PRN231_Project"));
 });
 var mapperConfig = new MapperConfiguration(mc =>
 {
