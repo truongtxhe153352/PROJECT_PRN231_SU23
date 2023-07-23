@@ -4,6 +4,7 @@ using BusinessObjects.Models;
 using BusinessObjects.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using Repositories;
 using Repositories.Interface;
 
@@ -110,6 +111,42 @@ namespace ManagerAPI.Controllers
             }
             _materialRepository.DeleteMaterial(materialId);
             return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult UploadAssigmentNewest(IFormFile file, [FromForm] int courseId, [FromForm] int uploaderId)
+        {
+            UploadAssignmentViewModel uploadAssignmentViewModel = new UploadAssignmentViewModel();
+            uploadAssignmentViewModel.Assignment = file;
+            uploadAssignmentViewModel.CourseId = courseId;
+            uploadAssignmentViewModel.UploaderId = uploaderId;
+            _assignmentRespository.SaveAssignment(uploadAssignmentViewModel);
+            return Ok();
+        }
+
+        //public IActionResult UploadAssignment([FromForm] UploadAssignmentViewModel uploadAssignmentViewModel)
+        [HttpGet("{teacherId}/{courseId}")]
+        public ActionResult<IEnumerable<AssigmentDto>> ListAssignmentByCourse(int teacherId, int courseId)
+        => _assignmentRespository.ListAssignmentByTeacherAndCourse(teacherId, courseId).Select(_mapper.Map<Assignment, AssigmentDto>).ToList();
+
+        [HttpGet("{assId}")]
+        public ActionResult<IEnumerable<SubmitAssignmentDto>> ListSubmitAssignmentByCourse(int assId)
+        => _submitAssignmentRespository.ListSubmitAssignmentByAssId(assId).Select(_mapper.Map<SubmitAssignment, SubmitAssignmentDto>).ToList();
+
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> DownloadSubmitAssignmentById(int id)
+        {
+            SubmitAssignmentDto assigmentDto = (SubmitAssignmentDto)_mapper.Map<SubmitAssignmentDto>(_submitAssignmentRespository.GetSubmitAssignmentsById(id));
+            //var filepath = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\Files", filename);
+            var filepath = assigmentDto.Path;
+            var provider = new FileExtensionContentTypeProvider();
+            if (!provider.TryGetContentType(filepath, out var contenttype))
+            {
+                contenttype = "application/octet-stream";
+            }
+            var bytes = await System.IO.File.ReadAllBytesAsync(filepath);
+            return File(bytes, contenttype, Path.GetFileName(filepath));
         }
     }
 }
