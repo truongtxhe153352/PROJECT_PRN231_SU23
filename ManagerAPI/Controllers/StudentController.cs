@@ -126,13 +126,28 @@ namespace ManagerAPI.Controllers
         public IActionResult DowloadMaterial(int materialId)
         {
             var material = _materialRepository.GetMaterialById(materialId);
-            string materialPath = material.Path + "/" + material.MaterialName;
+            string materialPath = material.Path + "\\" + material.MaterialName;
             var fileExtension = Path.GetExtension(material.MaterialName);
+            // Xác định kiểu nội dung (content type) của tệp dựa trên phần mở rộng (extension) của tên tệp.
             var contentType = Registry.GetValue(@"HKEY_CLASSES_ROOT\" + fileExtension, "Content Type", null) as string;
             System.GC.Collect();
             System.GC.WaitForPendingFinalizers();
-            Byte[] b = System.IO.File.ReadAllBytes(materialPath);
+            var b = System.IO.File.ReadAllBytes(materialPath);
             return File(b, contentType, material.MaterialName);
+
+            //var material = _materialRepository.GetMaterialById(materialId);
+            //string materialPath = material.Path + "/" + material.MaterialName;
+
+            //// Xác định kiểu nội dung (content type) của tệp dựa trên phần mở rộng (extension) của tên tệp.
+            //var provider = new FileExtensionContentTypeProvider();
+            //if (!provider.TryGetContentType(materialPath, out var contentType))
+            //{
+            //    contentType = "application/octet-stream";
+            //}
+
+            //Byte[] b = System.IO.File.ReadAllBytes(materialPath);
+            //return File(b, contentType, material.MaterialName);
+
         }
 
     }
