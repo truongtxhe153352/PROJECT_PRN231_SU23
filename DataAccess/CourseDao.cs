@@ -38,8 +38,11 @@ namespace DataAccess
             {
                 using (var context = new PRN231_ProjectContext())
                 {
-                    c = context.Courses.Include(c => c.Assignments).Include(u => u.Users)
-                        .Include(c => c.Materials).Where(c => c.CourseId == id).FirstOrDefault();
+                    c = context.Courses.Include(c => c.Assignments)
+                        .Include(u => u.Users)
+                        .Include(c => c.Materials)
+                        .Where(c => c.CourseId == id)
+                        .FirstOrDefault();
                 }
             }
             catch (Exception ex)
@@ -86,7 +89,7 @@ namespace DataAccess
             try
             {
                 using (var context = new PRN231_ProjectContext())
-                {
+                {// BeginTransaction tất cả các thao tác sẽ được thực hiện thành công hoàn toàn hoặc sẽ không có thay đổi nào được lưu vào cơ sở dữ liệu.
                     using (var transaction = context.Database.BeginTransaction())
                     {
                         var c = context.Courses.Include(c => c.Users).Include(c => c.Assignments)

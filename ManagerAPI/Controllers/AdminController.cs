@@ -18,6 +18,7 @@ namespace ManagerAPI.Controllers
         {
             _mapper = mapper;
         }
+
         [HttpGet]
         public IActionResult GetAllCourse()
         {
@@ -37,6 +38,7 @@ namespace ManagerAPI.Controllers
             CourseDto courseDto = _mapper.Map<Course, CourseDto>(course);
             return Ok(courseDto);
         }
+
         [HttpPost]
         public IActionResult InsertCourse(Course course)
         {
@@ -64,6 +66,7 @@ namespace ManagerAPI.Controllers
             }
             return Ok();
         }
+
         [HttpDelete("{courseId}")]
         public IActionResult DeleteCourse(int courseId)
         {
@@ -72,15 +75,18 @@ namespace ManagerAPI.Controllers
             {
                 return NotFound();
             }
-            var materialCourse = c.Materials.Where(a => a.CourseId == courseId).ToList();
-            List<string> mPaths = c.Materials.Select(m => m.Path + "/" + m.MaterialName).ToList();
-            foreach (var m in mPaths)
-            {
-                if (System.IO.File.Exists(m))
-                {
-                    System.IO.File.Delete(m);
-                }
-            }
+
+            //var materialCourse = c.Materials.Where(a => a.CourseId == courseId).ToList();
+
+            //  phương thức tiếp tục lấy danh sách đường dẫn (path) của các tệp (materials) liên quan đến khóa học
+            //List<string> mPaths = c.Materials.Select(m => m.Path + "/" + m.MaterialName).ToList();
+            //foreach (var m in mPaths)
+            //{
+            //    if (System.IO.File.Exists(m))
+            //    {
+            //        System.IO.File.Delete(m);
+            //    }
+            //}
             _courseRepository.DeleteCourse(c);
 
             return Ok();
