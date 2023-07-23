@@ -23,6 +23,7 @@ namespace ProjectClient.Controllers
         {
             return View();
         }
+
         [Route("logout")]
 
         public async Task<IActionResult> Logout()

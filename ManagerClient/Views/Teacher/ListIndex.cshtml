@@ -1,0 +1,38 @@
+﻿@model IEnumerable<BusinessObjects.DTO.CourseDto>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseCode)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseCode)
+            </td>
+            <td>
+                    <a asp-action="ListMaterialOfCourse" asp-route-id="@item.CourseId">Materials</a> |
+                    <a asp-action="ListAssignmentByCourse" asp-route-tid="@ViewData["teacherId"]" asp-route-cid="@item.CourseId">Teacher List Assignment</a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
