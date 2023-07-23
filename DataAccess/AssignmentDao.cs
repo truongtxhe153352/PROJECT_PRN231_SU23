@@ -68,7 +68,10 @@ namespace DataAccess
             {
                 using (var context = new PRN231_ProjectContext())
                 {
-                    list = context.Assignments.Include(m => m.Course).Include(m => m.Uploader).Where(a => a.CourseId == courseId).ToList();
+                    list = context.Assignments
+                        .Include(m => m.Course)
+                        .Include(m => m.Uploader)
+                        .Where(a => a.CourseId == courseId).ToList();
                 }
             }
             catch (Exception ex)
@@ -100,7 +103,10 @@ namespace DataAccess
             {
                 using (var context = new PRN231_ProjectContext())
                 {
-                    assignment = context.Assignments.Include(m => m.Course).Include(m => m.Uploader).Where(a => a.AssignmentId == assId).SingleOrDefault();
+                    assignment = context.Assignments
+                        .Include(m => m.Course)
+                        .Include(m => m.Uploader).Where(a => a.AssignmentId == assId)
+                        .SingleOrDefault();
                 }
             }
             catch (Exception ex)

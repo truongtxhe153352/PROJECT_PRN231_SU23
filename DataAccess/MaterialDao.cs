@@ -19,7 +19,11 @@ namespace DataAccess
             {
                 using (var context = new PRN231_ProjectContext())
                 {
-                    list = context.Materials.Include(m => m.Course).Include(m => m.Uploader).Where(a => a.CourseId == courseId).ToList();
+                    list = context.Materials
+                        .Include(m => m.Course)
+                        .Include(m => m.Uploader)
+                        .Where(a => a.CourseId == courseId)
+                        .ToList();
                 }
             }
             catch (Exception ex)
