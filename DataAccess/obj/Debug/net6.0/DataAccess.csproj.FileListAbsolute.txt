@@ -1,0 +1,16 @@
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\DataAccess\bin\Debug\net6.0\DataAccess.deps.json
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\DataAccess\bin\Debug\net6.0\DataAccess.dll
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\DataAccess\bin\Debug\net6.0\DataAccess.pdb
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\DataAccess\obj\Debug\net6.0\DataAccess.csproj.AssemblyReference.cache
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\DataAccess\obj\Debug\net6.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\DataAccess\obj\Debug\net6.0\DataAccess.AssemblyInfoInputs.cache
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\DataAccess\obj\Debug\net6.0\DataAccess.AssemblyInfo.cs
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\DataAccess\obj\Debug\net6.0\DataAccess.csproj.CoreCompileInputs.cache
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\DataAccess\obj\Debug\net6.0\DataAccess.dll
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\DataAccess\obj\Debug\net6.0\refint\DataAccess.dll
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\DataAccess\obj\Debug\net6.0\DataAccess.pdb
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\DataAccess\obj\Debug\net6.0\ref\DataAccess.dll
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\DataAccess\bin\Debug\net6.0\appsettings.json
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\DataAccess\bin\Debug\net6.0\BusinessObjects.dll
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\DataAccess\bin\Debug\net6.0\BusinessObjects.pdb
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\DataAccess\obj\Debug\net6.0\DataAccess.csproj.CopyComplete

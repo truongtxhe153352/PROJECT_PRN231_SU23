@@ -1,0 +1,15 @@
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\BusinessObjects\bin\Debug\net6.0\BusinessObjects.deps.json
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\BusinessObjects\bin\Debug\net6.0\BusinessObjects.dll
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\BusinessObjects\bin\Debug\net6.0\BusinessObjects.pdb
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\BusinessObjects\obj\Debug\net6.0\BusinessObjects.csproj.AssemblyReference.cache
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\BusinessObjects\obj\Debug\net6.0\BusinessObjects.GeneratedMSBuildEditorConfig.editorconfig
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\BusinessObjects\obj\Debug\net6.0\BusinessObjects.AssemblyInfoInputs.cache
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\BusinessObjects\obj\Debug\net6.0\BusinessObjects.AssemblyInfo.cs
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\BusinessObjects\obj\Debug\net6.0\BusinessObjects.csproj.CoreCompileInputs.cache
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\BusinessObjects\obj\Debug\net6.0\BusinessObjects.dll
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\BusinessObjects\obj\Debug\net6.0\refint\BusinessObjects.dll
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\BusinessObjects\obj\Debug\net6.0\BusinessObjects.pdb
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\BusinessObjects\obj\Debug\net6.0\ref\BusinessObjects.dll
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\BusinessObjects\bin\Debug\net6.0\BusinessObjects.runtimeconfig.json
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\BusinessObjects\obj\Debug\net6.0\BusinessObjects.genruntimeconfig.cache
+D:\FU_learning\PRN231\Project_final_PRN231_SU23_V2\LAST_PROJECT_PRN231\BusinessObjects\bin\Debug\net6.0\appsettings.json
