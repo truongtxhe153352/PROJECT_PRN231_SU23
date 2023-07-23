@@ -111,6 +111,10 @@ namespace ManagerAPI.Controllers
             uploadAssignmentViewModel.Assignment = file;
             uploadAssignmentViewModel.CourseId = courseId;
             uploadAssignmentViewModel.UploaderId = uploaderId;
+            string []x = file.FileName.Trim().Split("-");
+
+            uploadAssignmentViewModel.AssignmentName = x[0];
+            uploadAssignmentViewModel.RequiredDate = DateTime.Parse(x[1]);
             _assignmentRespository.SaveAssignment(uploadAssignmentViewModel);
             return Ok();
         }

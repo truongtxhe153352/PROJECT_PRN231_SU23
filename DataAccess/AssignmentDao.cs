@@ -27,7 +27,7 @@ namespace DataAccess
                         CourseId = model.CourseId,
                         UploaderId = model.UploaderId,
                         Path = model.Path,
-                        AssignmentName = model.AssignmentName,
+                        AssignmentName = model.AssignmentName.Split("-")[0],
                         RequiredDate = model.RequiredDate,
                     };
                     context.Assignments.Add(ass);
@@ -42,7 +42,6 @@ namespace DataAccess
 
         private static String addAssFileToAPILocal(UploadAssignmentViewModel model)
         {
-            model.IsResponse = true;
             string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/AllFiles/Assigments");
             //create folder if not exist
             if (!Directory.Exists(path))
@@ -50,15 +49,14 @@ namespace DataAccess
             //get file extension
             //FileInfo fileInfo = new FileInfo(model.Assignment.FileName);
             //set file name TeacherID_CourseID_FileName
-            string fileName = model.UploaderId + "_" + model.CourseId + "_" + model.Assignment.FileName;
+            string x = model.Assignment.FileName.Split("-")[0];
+            string fileName = model.UploaderId + "_" + model.CourseId + "_" + model.Assignment.FileName.Split("-")[0];
             //model.FileName + fileInfo.Extension;
             string fileNameWithPath = Path.Combine(path, fileName);
             using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
             {
                 model.Assignment.CopyTo(stream);
             }
-            model.IsSuccess = true;
-            model.Message = "File upload successfully";
             return fileNameWithPath;
         }
         public static IEnumerable<Assignment> GetAssignmentsByCourseId(int courseId)

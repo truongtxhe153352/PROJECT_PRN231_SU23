@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BusinessObjects.DTO.MaterialDto>
+
+@{
+    ViewData["Title"] = "ListMaterialOfCourse";
+}
+
+<h1>ListMaterialOfCourse</h1>
+
+<p>
+    
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaterialId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaterialName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UploaderName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaterialId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaterialName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UploaderName)
+            </td>
+            <td>
+                    <a asp-action="DownloadMaterial" asp-controller="Student" asp-route-id="@item.MaterialId">Download</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

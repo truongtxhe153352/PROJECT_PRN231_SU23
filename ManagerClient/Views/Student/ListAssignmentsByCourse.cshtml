@@ -1,0 +1,50 @@
+﻿@model IEnumerable<BusinessObjects.DTO.AssigmentDto>
+@{
+    ViewData["Title"] = "ListAssignmentsByCourse";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+<h1>ListAssignmentsByCourse</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AssignmentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssignmentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequiredDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeacherName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssignmentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssignmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequiredDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeacherName)
+                </td>
+                <td>
+                    <a href="http://localhost:5041/api/Student/DownloadAssignmentByassId/@item.AssignmentId">DownloadAss</a> |
+                    <a asp-action="SubmitAssignment" asp-controller="Student" asp-route-assid="@item.AssignmentId">Submit Assignments</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    </table>

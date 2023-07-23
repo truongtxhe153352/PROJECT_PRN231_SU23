@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessObjects.ViewModel
 {
-    public class SubmitAssignmentViewModel: ReponseModel
+    public class SubmitAssignmentViewModel 
     {
         public IFormFile SubmitFile { get; set; }
         public int? SubmitAssignmentId { get; set; }

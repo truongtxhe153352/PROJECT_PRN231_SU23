@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessObjects.ViewModel
 {
-    public class UploadMaterialViewModel
+    public class UploadMaterialViewModel 
     {
         public IFormFile Material { get; set; }
         public string MaterialPath { get; set; }

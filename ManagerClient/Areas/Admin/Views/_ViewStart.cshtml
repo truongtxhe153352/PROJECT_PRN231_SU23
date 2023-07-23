@@ -1,0 +1,22 @@
+﻿@using System.IdentityModel.Tokens.Jwt;
+@{
+    var strData = Context.Request.Cookies["jwtToken"];
+    if (!string.IsNullOrEmpty(strData))
+    {
+        var jwtHandler = new JwtSecurityTokenHandler();
+        var jwtToken = jwtHandler.ReadJwtToken(strData);
+        string role = "";
+        foreach (var claim in jwtToken.Claims)
+        {
+            var type = claim.Type;
+            if (claim.Type.Equals("http://schemas.microsoft.com/ws/2008/06/identity/claims/role"))
+            {
+                role = claim.Value;
+            }
+        }
+        if (role.Equals("Admin"))
+        {
+            Layout = "_AdminLayout";
+        }
+    }
+}

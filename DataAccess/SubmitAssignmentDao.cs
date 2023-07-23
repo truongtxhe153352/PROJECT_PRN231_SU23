@@ -58,7 +58,6 @@ namespace DataAccess
         }
         private static String addAssFileToAPILocal(SubmitAssignmentViewModel model)
         {
-            model.IsResponse = true;
             string path = Path.Combine(Directory.GetCurrentDirectory()
                 , "wwwroot/AllFiles/SubmitAssignment");
             //create folder if not exist
@@ -74,8 +73,6 @@ namespace DataAccess
             {
                 model.SubmitFile.CopyTo(stream);
             }
-            model.IsSuccess = true;
-            model.Message = "File upload successfully";
             return fileNameWithPath;
         }
 

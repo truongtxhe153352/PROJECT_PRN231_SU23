@@ -1,0 +1,39 @@
+﻿@model BusinessObjects.ViewModel.SubmitAssignmentViewModel
+@{
+    ViewData["Title"] = "SubmitAssignment";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+<h1>Submit Assignment</h1>
+
+<form asp-controller="Student" asp-action="UploadSubmitPost" enctype="multipart/form-data" method="post">
+    <div class="row mt-2">
+        <div class="col-12">
+            <label class="col-form-label">SubmitAssignmentName: </label>
+            <input asp-for="SubmitAssignmentName" class="form-control" />
+            <span asp-validation-for="SubmitAssignmentName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-12">
+            <label class="col-form-label">Select SubmitFile: </label>
+            <input asp-for="SubmitFile" class="form-control" />
+            <span asp-validation-for="SubmitFile" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-12">
+            <label class="col-form-label">Description: </label>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+    <input asp-for="UploaderId" class="form-control" hidden />
+    <input asp-for="AssignmentId" class="form-control" hidden />
+    <div class="row mt-2">
+        <div class="col-12">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </div>
+
+</form>

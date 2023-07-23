@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\FU_learning\\PRN231\\Project_final_PRN231_SU23_V2\\LAST_PROJECT_PRN231\\BusinessObjects\\BusinessObjects.csproj": {}
+    "D:\\University\\Semester8\\PRN231\\LastProject\\PROJECT_PRN231_SU23\\BusinessObjects\\BusinessObjects.csproj": {}
   },
   "projects": {
-    "D:\\FU_learning\\PRN231\\Project_final_PRN231_SU23_V2\\LAST_PROJECT_PRN231\\BusinessObjects\\BusinessObjects.csproj": {
+    "D:\\University\\Semester8\\PRN231\\LastProject\\PROJECT_PRN231_SU23\\BusinessObjects\\BusinessObjects.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FU_learning\\PRN231\\Project_final_PRN231_SU23_V2\\LAST_PROJECT_PRN231\\BusinessObjects\\BusinessObjects.csproj",
+        "projectUniqueName": "D:\\University\\Semester8\\PRN231\\LastProject\\PROJECT_PRN231_SU23\\BusinessObjects\\BusinessObjects.csproj",
         "projectName": "BusinessObjects",
-        "projectPath": "D:\\FU_learning\\PRN231\\Project_final_PRN231_SU23_V2\\LAST_PROJECT_PRN231\\BusinessObjects\\BusinessObjects.csproj",
-        "packagesPath": "C:\\Users\\truon\\.nuget\\packages\\",
-        "outputPath": "D:\\FU_learning\\PRN231\\Project_final_PRN231_SU23_V2\\LAST_PROJECT_PRN231\\BusinessObjects\\obj\\",
+        "projectPath": "D:\\University\\Semester8\\PRN231\\LastProject\\PROJECT_PRN231_SU23\\BusinessObjects\\BusinessObjects.csproj",
+        "packagesPath": "C:\\Users\\phung\\.nuget\\packages\\",
+        "outputPath": "D:\\University\\Semester8\\PRN231\\LastProject\\PROJECT_PRN231_SU23\\BusinessObjects\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\truon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\phung\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -81,8 +81,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -91,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

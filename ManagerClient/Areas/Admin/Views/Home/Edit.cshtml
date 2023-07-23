@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@model BusinessObjects.DTO.UserDto
+<h1>Edit</h1>
+
+<h3 style="color: red"> @ViewData["ErrorMessage"]</h3>
+<form asp-action="Edit">
+    <input asp-for="UserId" type="hidden"/><br />
+    <label asp-for="RoleId "></label><br />
+    <select asp-for="RoleId" asp-items="ViewBag.roleId"></select><br />
+    <span asp-validation-for="RoleId"></span><br />
+    <label asp-for="Fullname"></label><br />
+    <input asp-for="Fullname" /><br />
+    <span asp-validation-for="Fullname"></span><br />
+    <label asp-for="Password"></label><br />
+    <input asp-for="Password" type="password" /><br />
+    <span asp-validation-for="Password"></span><br />
+    <label asp-for="Email"></label><br />
+    <input asp-for="Email" /><br />
+    <span asp-validation-for="Email"></span><br />
+    <input type="submit" value="Edit" />
+</form>

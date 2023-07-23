@@ -28,7 +28,7 @@ namespace ManagerAPI.Controllers
 
         [HttpGet]
         public ActionResult<IEnumerable<UserDto>> GetAllUsers() => _userRepository.GetAllUsers().Select(_mapper.Map<User, UserDto>).ToList();
-        [HttpGet("uid")]
+        [HttpGet("{uid}")]
         public ActionResult<UserDto> GetUserById(int uid) => (UserDto)_mapper.Map<UserDto>(_userRepository.GetUserById(uid));
 
         [HttpPost]
@@ -40,7 +40,7 @@ namespace ManagerAPI.Controllers
             _userRepository.InsertUser(user);
             return NoContent();
         }
-        [HttpDelete("uid")]
+        [HttpDelete("{uid}")]
         public IActionResult DeleteUser(int uid)
         {
             var user = _userRepository.GetUserById(uid);
@@ -48,7 +48,7 @@ namespace ManagerAPI.Controllers
             _userRepository.DeleteUser(user);
             return NoContent();
         }
-        [HttpPut("uid")]
+        [HttpPut("{uid}")]
         public IActionResult UpdateProduct(int uid, UserDto uDto)
         {
             var PTmp = _userRepository.GetUserById(uid);

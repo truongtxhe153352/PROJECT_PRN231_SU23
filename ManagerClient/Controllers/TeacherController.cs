@@ -222,7 +222,7 @@ namespace ManagerClient.Controllers
             using var stream = uploadAssignmentViewModel.Assignment.OpenReadStream();
             var streamContent = new StreamContent(stream);
             var fileContent = new ByteArrayContent(await streamContent.ReadAsByteArrayAsync());
-            content.Add(fileContent, "file", uploadAssignmentViewModel.Assignment.FileName);
+            content.Add(fileContent, "file", uploadAssignmentViewModel.AssignmentName + "-" + uploadAssignmentViewModel.RequiredDate.Value);
 
             content.Add(new StringContent(uploadAssignmentViewModel.CourseId.ToString()), "courseId");
             content.Add(new StringContent(uploadAssignmentViewModel.UploaderId.ToString()), "uploaderId");
@@ -244,7 +244,8 @@ namespace ManagerClient.Controllers
             {
                 msg = "failed";
             }
-            return RedirectToAction(nameof(Index));
+            //return RedirectToAction(nameof(Index));
+            return RedirectToAction("ListAssignmentByCourse", "Teacher", new { cid = uploadAssignmentViewModel.CourseId, tid= uploadAssignmentViewModel.UploaderId});
         }
         private async Task<SelectList> listCourseByUploaderId(int uploaderId)
         {
@@ -309,6 +310,28 @@ namespace ManagerClient.Controllers
             };
             List<SubmitAssignmentDto> subAssigmentDtos = JsonSerializer.Deserialize<List<SubmitAssignmentDto>>(strData, options);
             return View(subAssigmentDtos);
+        }
+
+        public async Task<IActionResult> DownloadMaterial(int id)
+        {
+            var strData = HttpContext.Request.Cookies["jwtToken"];
+            if (string.IsNullOrEmpty(strData))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData);
+            HttpResponseMessage response = await client.GetAsync(TeacherApiUrl + "/Assignments/download/" + id.ToString());
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    return RedirectToAction("ErrorCode", "Home", new { statusCodes = response.StatusCode });
+                }
+            }
+            var stream = await response.Content.ReadAsStreamAsync();
+            var contentType = response.Content.Headers.ContentType.ToString();
+            var fileName = response.Content.Headers.ContentDisposition.FileName.Trim('\"');
+            return File(stream, contentType, fileName);
         }
     }
 }
