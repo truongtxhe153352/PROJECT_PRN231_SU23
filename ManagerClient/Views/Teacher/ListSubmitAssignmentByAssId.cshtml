@@ -1,0 +1,48 @@
+﻿@model IEnumerable<BusinessObjects.DTO.SubmitAssignmentDto>
+@{
+    ViewData["Title"] = "ListSubmitAssignmentByAssId";
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+}
+
+<h1>ListSubmitAssignmentByAssId</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SubmitAssignmentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssignmentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubmitAssignmentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssignmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a href="http://localhost:5041/api/Teacher/Assignments/download/@item.SubmitAssignmentId" download">Download Submission</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

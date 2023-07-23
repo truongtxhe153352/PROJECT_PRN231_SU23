@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net.Http.Headers;
+using System.Net.Http;
 using System.Text.Json;
 
-namespace ManagerClient.Controllers
+namespace ProjectClient.Controllers
 {
     [Route("login")]
     public class LoginController : Controller
@@ -12,7 +14,7 @@ namespace ManagerClient.Controllers
         public LoginController()
         {
             client = new HttpClient();
-            UserApiUrl = "http://localhost:5041/api/User/Login";
+            UserApiUrl = "http://localhost:5041/api/User";
         }
 
         [Route("")]
@@ -35,7 +37,7 @@ namespace ManagerClient.Controllers
             HttpResponseMessage response = await client.GetAsync(UserApiUrl + "/" + email + "/" + password);
             if (!response.IsSuccessStatusCode)
             {
-                return View();
+                return View("Index");
             }
             string strData = await response.Content.ReadAsStringAsync();
             var options = new JsonSerializerOptions
@@ -44,10 +46,9 @@ namespace ManagerClient.Controllers
             };
             var cookieOptions = new CookieOptions();
             cookieOptions.Expires = DateTime.Now.AddMinutes(5);
-            // lưu trữ và gửi lại cho server
             Response.Cookies.Append("jwtToken", strData, cookieOptions);
 
-            // xử lí jwt
+
             var jwtHandler = new JwtSecurityTokenHandler();
             var jwtToken = jwtHandler.ReadJwtToken(strData);
             string role = "";
@@ -59,27 +60,24 @@ namespace ManagerClient.Controllers
                     role = claim.Value;
                 }
             }
-            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", strData);
-            //HttpResponseMessage httpResponse2 = await client.GetAsync("http://localhost:5000/api/Student/TestApi");
-            //var test = httpResponse2.IsSuccessStatusCode;
             return RedirectToAction("Index", "Home");
         }
 
-        //[HttpPost]
-        //[Route("process")]
-        //public IActionResult Process(string username, string myPassword)
-        //{
-        //    //TODO: connect with database
-        //    if (username != null && myPassword != null && username.Equals("admin") && myPassword.Equals("123"))
-        //    {
-        //        HttpContext.Session.SetString("username", username);
-        //        return View("Welcome");
-        //    }
-        //    else
-        //    {
-        //        ViewBag.error = "Invalid";
-        //        return View("Index");
-        //    }
-        //}
+        [HttpPost]
+        [Route("process")]
+        public IActionResult Process(string username, string myPassword)
+        {
+            //TODO: connect with database
+            if (username != null && myPassword != null && username.Equals("admin") && myPassword.Equals("123"))
+            {
+                HttpContext.Session.SetString("username", username);
+                return View("Welcome");
+            }
+            else
+            {
+                ViewBag.error = "Invalid";
+                return View("Index");
+            }
+        }
     }
 }

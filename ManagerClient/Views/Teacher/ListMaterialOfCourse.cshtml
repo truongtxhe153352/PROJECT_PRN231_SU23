@@ -1,0 +1,67 @@
+﻿@using System.IdentityModel.Tokens.Jwt;
+@model IEnumerable<BusinessObjects.DTO.MaterialDto>
+
+@{
+    ViewData["Title"] = "ListMaterialOfCourse";
+   
+}
+
+<h1>ListMaterialOfCourse</h1>
+@if(ViewData["msg"] != null)
+{
+    if (ViewData["msg"].Equals("success"))
+    {
+        <p class="text-success">Upload Successfully</p>
+    }
+    if (ViewData["msg"].Equals("failed"))
+    {
+        <p class="text-danger">Upload Failed</p>
+    }
+}
+<p>
+    <form asp-controller="Teacher" asp-action="UploadMaterial" enctype="multipart/form-data" method="post">
+        <input class="form-control" type="file" name="materials" multiple />
+        <input type="hidden" name="courseId" value="@ViewData["courseId"]" />
+        <input type="submit" value="Upload" class="btn btn-primary"/>
+    </form>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaterialId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaterialName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UploaderName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaterialId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaterialName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UploaderName)
+            </td>
+            <td>
+                <a asp-action="DeleteMaterial" asp-controller="Teacher" asp-route-materialId="@item.MaterialId" asp-route-courseId="@item.CourseId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

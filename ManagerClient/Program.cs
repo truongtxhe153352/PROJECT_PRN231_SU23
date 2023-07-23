@@ -9,9 +9,8 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
+    //app.UseHsts();
 }
-
-//app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 
@@ -23,6 +22,9 @@ app.UseAuthorization();
 //    name: "default",
 //    pattern: "{controller=Home}/{action=Index}/{id?}");
 //confirge multiple conventional routes
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 app.MapControllerRoute(
     name: "areas",
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
