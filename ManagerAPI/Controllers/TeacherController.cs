@@ -50,7 +50,7 @@ namespace ManagerAPI.Controllers
         }
 
 
-        [HttpGet("courses/{teacherId}")]
+        [HttpGet("Courses/{teacherId}")]
         public IActionResult GetAllCourses(int teacherId)
         {
             List<Course> courses = (List<Course>)_teacherRepository.GetAllCourseByTeacherId(teacherId);
@@ -68,6 +68,13 @@ namespace ManagerAPI.Controllers
             return Ok(courseDtos);
         }
 
+        [HttpGet("getByEmail/{email}")]
+        public IActionResult GetTeacherByEmail(string email)
+        {
+            User user = _userRepository.GetUserByEmail(email);
+            UserDto userDto = _mapper.Map<User, UserDto>(user);
+            return Ok(userDto);
+        }
 
         //================================================MATERIAL====================================================
         [HttpGet("Materials/{courseId}")]
