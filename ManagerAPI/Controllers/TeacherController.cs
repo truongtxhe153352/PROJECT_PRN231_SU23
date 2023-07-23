@@ -114,6 +114,7 @@ namespace ManagerAPI.Controllers
         }
 
         [HttpPost]
+        [Route("assignments")]
         public IActionResult UploadAssigmentNewest(IFormFile file, [FromForm] int courseId, [FromForm] int uploaderId)
         {
             UploadAssignmentViewModel uploadAssignmentViewModel = new UploadAssignmentViewModel();
@@ -129,10 +130,10 @@ namespace ManagerAPI.Controllers
         public ActionResult<IEnumerable<AssigmentDto>> ListAssignmentByCourse(int teacherId, int courseId)
         => _assignmentRespository.ListAssignmentByTeacherAndCourse(teacherId, courseId).Select(_mapper.Map<Assignment, AssigmentDto>).ToList();
 
+
         [HttpGet("{assId}")]
         public ActionResult<IEnumerable<SubmitAssignmentDto>> ListSubmitAssignmentByCourse(int assId)
         => _submitAssignmentRespository.ListSubmitAssignmentByAssId(assId).Select(_mapper.Map<SubmitAssignment, SubmitAssignmentDto>).ToList();
-
 
         [HttpGet("{id}")]
         public async Task<IActionResult> DownloadSubmitAssignmentById(int id)
