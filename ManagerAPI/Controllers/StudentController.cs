@@ -9,12 +9,16 @@ using BusinessObjects.ViewModel;
 using static System.Net.WebRequestMethods;
 using System.Diagnostics;
 using Microsoft.Win32;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace ManagerAPI.Controllers
 {
 
     [ApiController]
     [Route("api/[controller]/[action]")]
+    [Authorize(Roles = "Student")]
+
     public class StudentController : Controller
     {
         private readonly ICourseRepository _courseRepository = new CourseRepository();
@@ -126,7 +130,7 @@ namespace ManagerAPI.Controllers
         public IActionResult DowloadMaterial(int materialId)
         {
             var material = _materialRepository.GetMaterialById(materialId);
-            string materialPath = material.Path + "\\" + material.MaterialName;
+            string materialPath = material.Path + "/" + material.MaterialName;
             var fileExtension = Path.GetExtension(material.MaterialName);
             // Xác định kiểu nội dung (content type) của tệp dựa trên phần mở rộng (extension) của tên tệp.
             var contentType = Registry.GetValue(@"HKEY_CLASSES_ROOT\" + fileExtension, "Content Type", null) as string;

@@ -4,11 +4,15 @@ using BusinessObjects.Models;
 using Microsoft.AspNetCore.Mvc;
 using Repositories.Interface;
 using Repositories;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace ManagerAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
+    [Authorize(Roles = "Admin")]
+
     public class AdminController : Controller
     {
         private readonly ICourseRepository _courseRepository = new CourseRepository();

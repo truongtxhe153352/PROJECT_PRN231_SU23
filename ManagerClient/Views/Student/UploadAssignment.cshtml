@@ -1,0 +1,45 @@
+﻿@model BusinessObjects.ViewModel.UploadAssignmentViewModel
+@{
+    ViewData["Title"] = "UploadAssignment";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+<h1>UploadAssignment</h1>
+
+<form asp-controller="Teacher" asp-action="UploadAssignmentPost" enctype="multipart/form-data" method="post">
+    <div class="row mt-2">
+        <div class="col-12">
+            <label class="col-form-label">AssignmentName: </label>
+            <input asp-for="AssignmentName" class="form-control" />
+            <span asp-validation-for="AssignmentName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-12">
+            <label class="col-form-label">Select File: </label>
+            <input asp-for="Assignment" class="form-control" />
+            <span asp-validation-for="Assignment" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-12">
+            <label class="col-form-label">RequiredDate: </label>
+            <input asp-for="RequiredDate" class="form-control" />
+            <span asp-validation-for="RequiredDate" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-12">
+            <label asp-for="CourseId "></label><br />
+            <select asp-for="CourseId" asp-items="ViewBag.CourseId"></select><br />
+            <span asp-validation-for="CourseId"></span><br />
+        </div>
+    </div>
+    <input asp-for="UploaderId" class="form-control" hidden />
+    <div class="row mt-2">
+        <div class="col-12">
+            <button type="Upload" class="btn btn-success">Upload Assignment</button>
+        </div>
+    </div>
+
+</form>
